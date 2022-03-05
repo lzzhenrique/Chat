@@ -1,7 +1,18 @@
-import '../styles/globals.css'
+/* eslint-disable react/jsx-props-no-spreading */
+import React from 'react';
+import SocketsProvider from '../context/socketContext';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+interface AppParams {
+  Component: any,
+  pageProps: any,
 }
 
-export default MyApp
+function MyApp({ Component, pageProps }: AppParams) {
+  return (
+    <SocketsProvider>
+      <Component {...pageProps} />
+    </SocketsProvider>
+  );
+}
+
+export default MyApp;
