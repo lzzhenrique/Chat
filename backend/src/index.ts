@@ -5,6 +5,8 @@ import { Server } from 'socket.io';
 import config from 'config';
 import logger from './logger/logger';
 
+import socket from './sockets/socket';
+
 const PORT = 3001 || process.env.PORT;
 const corsOrigin = config.get<string>('corsOrigin');
 
@@ -20,4 +22,6 @@ const io = new Server(httpServer, {
 
 httpServer.listen(PORT, () => {
   logger.info('Server listening');
+
+  socket({ io });
 });
